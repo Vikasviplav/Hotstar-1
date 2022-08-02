@@ -6,6 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotstar 1</title>
+    <style>
+        #searchbox{
+            width:300px;
+            padding: 10px 0px;
+        }
+        #container{
+            width:305px;
+            height:250px;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +40,7 @@
         let url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${title}`
         let res = await fetch(url)
         let data = await res.json()
-        console.log(data)
+        //console.log(data)
         if(data.Response == "False"){
             return false
         }else{
@@ -52,12 +65,13 @@
             container.append(p)
         });
     }
+    let timerId;
 
-    let debounce = (fun,delay)=>{
+    let debounce = (myfun,delay)=>{
         if(timerId){
             clearInterval(timerId)
         }
-        var timerId = setTimeout(function fun(){
+         timerId = setTimeout( ()=>{
             myfun()
         },delay)
     }
